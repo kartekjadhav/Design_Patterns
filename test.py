@@ -1,5 +1,12 @@
-a = [1, 2, 3, 4, 5]
+import copy
 
-for index, num in enumerate(reversed(a)):
-    print(f"Index is {index} and value is {num}")
-    
+a = [1, 2, [3, 4, 5]]
+b = copy.copy(a)
+
+print(a)
+print(b)
+
+a[2][1] = 100
+
+print(a)
+print(b)

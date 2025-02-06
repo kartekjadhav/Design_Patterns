@@ -5,5 +5,6 @@ class FacebookDecorator(NotificationDecorator):
     def __init__(self, notification:Notification):
         super().__init__(notification)
     
-    def notify(self):
-        return self._notification.notify() + " + Facebook Notification"
+    def notify(self, message):
+        super().notify(message)
+        print(f"Sending Facebook notification -> {message}")

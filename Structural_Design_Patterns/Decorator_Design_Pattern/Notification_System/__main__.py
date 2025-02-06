@@ -7,10 +7,17 @@ if __name__ == "__main__":
     NMD = getmembers(notification_decorators, lambda n: isclass(n) and not isabstract(n) and issubclass(n, notification_decorators.NotificationDecorator))
 
     notification_members = {key:value for key, value in NM}
-    notification_decorator_members = {key:value for key, value in NMD}
+    decorator_members = {key:value for key, value in NMD}
 
-    noti = notification_members["EmailNotification"](["Om", "Kartek", "Sid"])
-    fb_noti = notification_decorator_members["FacebookDecorator"](noti)
-    print(fb_noti.notify())
-    slack_noti = notification_decorator_members["SlackDecorator"](noti)
-    print(slack_noti.notify())
+    print(f"Base Notifiers -> {notification_members}")
+    val = input("Enter the base notifier you want from above: ").strip()
+    notifier = notification_members[val]()
+
+    notifier = decorator_members["FacebookDecorator"](notifier)
+    notifier = decorator_members["SlackDecorator"](notifier)
+    notifier = decorator_members["SmsDecorator"](notifier)
+
+    notifier.notify("Your house is on fire")
+
+
+    #SMS(Slack(Facebook(Email())))

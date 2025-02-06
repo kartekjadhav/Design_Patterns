@@ -5,5 +5,6 @@ class SlackDecorator(NotificationDecorator):
     def __init__(self, notification:Notification):
         super().__init__(notification)
     
-    def notify(self):
-        return self._notification.notify() + " + Slack Notification"
+    def notify(self, message):
+        super().notify(message)
+        print(f"Sending Slack notification -> {message}")

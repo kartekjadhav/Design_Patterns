@@ -1,35 +1,18 @@
-import threading
-from abc import ABC, abstractmethod
-from copy import deepcopy
+n = None
+shuffle = None
+order = None
 
-class Prototype(ABC):
-    @abstractmethod
-    def clone(self):
-        pass
+with open('shuffle.in', 'r') as f:
+    n = int(f.readline().strip())
+    shuffle = list(map(int, f.readline().strip().split(" ")))
+    order = list(map(int, f.readline().strip().split(" ")))
 
-class Singleton(ABC):
-    __obj = None
-    __lock = threading.Lock()
-    def __init__(self):
-        if not Singleton.__obj:
-            Singleton.__obj = self
-        else:
-            raise Exception("Only one object can be created")
-    
-    @staticmethod
-    def getObj():
-        if not Singleton.__obj:
-            with Singleton.__lock:
-                if not Singleton.__obj:
-                    Singleton()
-        return Singleton.__obj
-    
-    def clone(self):
-        raise Exception("Cant clone the object as this class is Singleton")
+for _ in range(3):
+    temp = [0]*n
+    for index in range(n):
+        temp[index] = order[shuffle[index]-1]
+    order = temp  
 
-obj1 = Singleton.getObj()
-print(f"obj1 - {id(obj1)}")
-obj2 = Singleton.getObj()
-print(f"obj2 - {id(obj2)}")
-obj3 = obj1.clone()
-print(f"obj3 - {id(obj3)}")
+with open('shuffle.out', 'w') as f:
+    for i in order:
+        f.write(f"{i}\n")

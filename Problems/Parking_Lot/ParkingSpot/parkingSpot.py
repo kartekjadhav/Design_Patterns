@@ -28,13 +28,15 @@ class ParkingSpot(ABC):
             self.vehicle = vehicle
             self.occupied = True
         else:
-            print("Cannot park on occupied spot! Please park somewhere else.")
+            print("Cannot park on occupied spot!")
     
-    def vacat(self):
+    def vacate(self):
         if not self.occupied:
-            print(f"Spot {self.spotNumber} is already empty")
-        self.vehicle = None
-        self.occupied = False
+            print(f"Spot {self.spotNumber} is already empty.")
+        else:
+            self.vehicle = None
+            self.occupied = False
+            print(f"Spot {self.spotNumber} has been vacated.")
     
     def __str__(self):
         return (f"Parking Spot number - {self.spotNumber}\n"

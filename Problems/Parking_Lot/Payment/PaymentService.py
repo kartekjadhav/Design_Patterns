@@ -7,7 +7,7 @@ class PaymentService():
     
     def __init__(self):
         self.paymentProcessor = PaymentProcessor()
-
+    
     def initiatePayment(self, amount: float):
         print("Press the respective serial number to process payment - ")
         print("1. UPI")

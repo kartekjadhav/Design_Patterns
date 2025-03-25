@@ -1,3 +1,3 @@
 from .parkingSpot import ParkingSpot
-from .bikeParkingSpot import Bike
-from .carParkingSpot import Car
+from .bikeParkingSpot import BikeParkingSpot
+from .carParkingSpot import CarParkingSpot

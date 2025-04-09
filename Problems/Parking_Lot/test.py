@@ -1,4 +1,12 @@
-def f1(fare:float):
-    print("Recieved", fare)
+class Car:
+    def __init__(self):
+        pass
 
-f1(2)
+class Bike:
+    def __init__(self):
+        pass
+
+a = 'car'
+car = Car()
+b = car.__class__.__name__
+print(a.lower() == b.lower())
